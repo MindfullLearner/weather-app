@@ -1,4 +1,5 @@
 import SearchBar from "./components/SearchBar";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
   return (
@@ -7,6 +8,8 @@ function App() {
       <p>Search for a city to see the weather.</p>
 
       <SearchBar/>
+      
+      <WeatherCard/>
     </main>
   );
 }
