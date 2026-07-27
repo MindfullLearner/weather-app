@@ -1,15 +1,17 @@
-function WeatherCard() {
+import "./WeatherCard.css";
+
+function WeatherCard({ city, temperature, condition, humidity, wind }) {
   return (
-    <div>
-      <h2>Karachi</h2>
+    <div className="weather-card">
+      <h2>{city}</h2>
 
-      <p>☀️ Clear Sky</p>
+      <p>{condition}</p>
 
-      <h1>34°C</h1>
+      <h1>{temperature}°C</h1>
 
-      <p>Humidity: 52%</p>
+      <p>Humidity: {humidity}%</p>
 
-      <p>Wind: 12 km/h</p>
+      <p>Wind: {wind} km/h</p>
     </div>
   );
 }

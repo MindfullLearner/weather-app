@@ -1,6 +1,7 @@
+import "./SearchBar.css";
 function SearchBar() {
   return (
-    <div>
+    <div className="search-bar">
       <input
         type="text"
         placeholder="Enter city name"
