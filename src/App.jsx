@@ -4,11 +4,46 @@ import { useState } from "react";
 
 function App() {
    const [searchCity, setSearchCity] = useState("");
-   const [weatherCity, setWeatherCity] = useState("Karachi");
+   const [weather, setWeather] = useState(null);
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState("");
+   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+   
+
    function handleSearch() 
    {
-    setWeatherCity(searchCity);
+      fetchWeather();
    }
+
+    async function fetchWeather() 
+    {
+      setLoading(true);
+      try{
+        
+        const url= `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${searchCity}`;
+      
+        const response = await fetch(url);
+        if (!response.ok) 
+        {
+          throw new Error("Unable to fetch weather data.");
+        }
+        const data = await response.json();
+        setWeather({
+          city: data.location.name,
+          temperature: data.current.temp_c,
+          humidity: data.current.humidity,
+          wind: data.current.wind_kph,
+          condition: data.current.condition.text,
+        });
+      }
+      catch(error)
+      {
+        setError(error.message);
+      }
+      finally {
+        setLoading(false);
+      }
+    }
   return (
     <main className="app">
       <h1>Weather App</h1>
@@ -20,12 +55,15 @@ function App() {
         handleSearch={handleSearch}
       />
 
-      <WeatherCard 
-      city={weatherCity}
-      temperature={34}
-      condition="Clear Sky"
-      humidity={52}
-      wind={12}/>
+      {weather && (
+        <WeatherCard 
+        city={weather.city}
+        temperature={weather.temperature}
+        humidity={weather.humidity}
+        wind={weather.wind}
+        condition={weather.condition}
+        />
+      )}
     </main>
   );
   
