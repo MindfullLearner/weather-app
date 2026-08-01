@@ -2,7 +2,8 @@ import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import { useState } from "react";
 
-function App() {
+function App() 
+{
    const [searchCity, setSearchCity] = useState("");
    const [weather, setWeather] = useState(null);
    const [loading, setLoading] = useState(false);
@@ -12,15 +13,30 @@ function App() {
 
    function handleSearch() 
    {
-      fetchWeather();
+      const city=searchCity.trim();
+      if (city === "")
+      {
+          setError("Please enter a city name.");
+          return;
+      }   
+      fetchWeather(city);
+      
    }
-
-    async function fetchWeather() 
-    {
+   function handlekeyDown(e)
+   {
+      if (e.key ==="Enter")
+      {
+        handleSearch();
+      }
+   }
+   async function fetchWeather(city) 
+   {
+      setError("");
+      setWeather(null);
       setLoading(true);
       try{
         
-        const url= `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${searchCity}`;
+        const url= `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
       
         const response = await fetch(url);
         if (!response.ok) 
@@ -39,22 +55,27 @@ function App() {
       catch(error)
       {
         setError(error.message);
+        
       }
       finally {
         setLoading(false);
       }
     }
+    
   return (
     <main className="app">
       <h1>Weather App</h1>
       <p>Search for a city to see the weather.</p>
-
+      
       <SearchBar
         searchCity={searchCity}
         setSearchCity={setSearchCity}
         handleSearch={handleSearch}
+        handlekeyDown={handlekeyDown}
+        loading={loading}
       />
-
+      {loading && <p>Loading weather...</p>}
+      {error && <p>{error}</p>}   
       {weather && (
         <WeatherCard 
         city={weather.city}
@@ -68,5 +89,6 @@ function App() {
   );
   
 }
+
 
 export default App;
