@@ -1,7 +1,7 @@
 import "./SearchBar.css";
 
 
-function SearchBar({ searchCity, setSearchCity, handleSearch }) {
+function SearchBar({ searchCity, setSearchCity, handleSearch, handlekeyDown, loading }) {
   
   return (
     <div className="search-bar">
@@ -10,8 +10,13 @@ function SearchBar({ searchCity, setSearchCity, handleSearch }) {
         placeholder="Enter city name"
         value={searchCity}
         onChange={(e) => setSearchCity(e.target.value)}
+        onKeyDown={handlekeyDown}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button 
+        onClick={handleSearch}
+        disabled={loading}>
+          {loading ? "Searching..." : "Search"}
+      </button>
     </div>
   );
 }
