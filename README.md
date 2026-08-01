@@ -8,7 +8,7 @@ A Weather App built with React and Vite.
 - ✅ Milestone 2 – Static UI
 - ✅ Milestone 3 – API Integration
 - ✅ Milestone 4 – Dynamic Weather Data
-- ⏳ Milestone 5 – Error Handling
+- ✅ Milestone 5 – Error Handling
 - ⏳ Milestone 6 – Geolocation
 - ⏳ Milestone 7 – Deployment
 
