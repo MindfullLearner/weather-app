@@ -1,7 +1,7 @@
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import { useState } from "react";
-
+import "./App.css";
 function App() 
 {
    const [searchCity, setSearchCity] = useState("");
@@ -9,8 +9,9 @@ function App()
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState("");
    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+   const weatherCondition = weather?.condition?.toLowerCase() || "";
+   let backgroundClass="white";
    
-
    function handleSearch() 
    {
       const city=searchCity.trim();
@@ -22,7 +23,7 @@ function App()
       fetchWeather(city);
       
    }
-   function handlekeyDown(e)
+   function handleKeyDown(e)
    {
       if (e.key ==="Enter")
       {
@@ -44,7 +45,7 @@ function App()
           throw new Error("Unable to fetch weather data.");
         }
         const data = await response.json();
-        console.log(data.current.condition);
+        
         setWeather({
           city: data.location.name,
           temperature: data.current.temp_c,
@@ -63,10 +64,31 @@ function App()
       finally {
         setLoading(false);
       }
+      
     }
-    
+      if (weatherCondition.includes("thunder")) 
+      {
+          backgroundClass = "thunder-bg"
+      }
+      else if (weatherCondition.includes("rain") || weatherCondition.includes("drizzle") ) 
+      {
+          backgroundClass = "rain-bg"
+      }
+      else if (weatherCondition.includes("sunny") || weatherCondition.includes("clear")) 
+      {
+          backgroundClass = "sunny-bg"
+      }
+      else if (weatherCondition.includes("cloud") ||weatherCondition.includes("haze") ||weatherCondition.includes("cloudy")) 
+      { 
+          backgroundClass = "cloud-bg"
+      }
+      else
+      {
+          backgroundClass = "white"
+      }
+      
   return (
-    <main className="app">
+    <main className={"app "+ backgroundClass}>
       <h1>Weather App</h1>
       <p>Search for a city to see the weather.</p>
       
@@ -74,7 +96,7 @@ function App()
         searchCity={searchCity}
         setSearchCity={setSearchCity}
         handleSearch={handleSearch}
-        handlekeyDown={handlekeyDown}
+        handleKeyDown={handleKeyDown}
         loading={loading}
       />
       {loading && <p>Loading weather...</p>}
