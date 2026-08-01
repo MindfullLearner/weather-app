@@ -44,13 +44,16 @@ function App()
           throw new Error("Unable to fetch weather data.");
         }
         const data = await response.json();
+        console.log(data.current.condition);
         setWeather({
           city: data.location.name,
           temperature: data.current.temp_c,
           humidity: data.current.humidity,
           wind: data.current.wind_kph,
           condition: data.current.condition.text,
+          icon: data.current.condition.icon,
         });
+        
       }
       catch(error)
       {
@@ -83,8 +86,10 @@ function App()
         humidity={weather.humidity}
         wind={weather.wind}
         condition={weather.condition}
+        icon={weather.icon}
         />
       )}
+      
     </main>
   );
   

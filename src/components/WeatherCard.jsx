@@ -1,13 +1,15 @@
 import "./WeatherCard.css";
 
-function WeatherCard({ city, temperature, condition, humidity, wind }) {
+function WeatherCard({ city, temperature, condition, humidity, wind, icon }) {
   return (
     <div className="weather-card">
       <h2>{city}</h2>
 
-      <p>{condition}</p>
+      <img src={icon} alt="" />
 
       <h1>{temperature}°C</h1>
+      
+      <p>{condition}</p>
 
       <p>Humidity: {humidity}%</p>
 
