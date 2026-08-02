@@ -10,8 +10,8 @@
   margin-bottom: 10px;
 }
 
-.weather-card h1 {
-  font-size: 48px;
+.weather-card h1{
+  
   margin: 15px 0;
 }
 
@@ -22,4 +22,24 @@
 .weather-card img {
     width: 80px;
     height: 80px;
+}
+.temperature {
+    font-size: 60px;
+    color: black;
+}
+hr {
+    border: none;
+    height: 1px;
+    background: lightgray;
+    margin: 2px;
+}
+.weather-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
