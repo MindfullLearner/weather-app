@@ -1,25 +1,48 @@
-.app {
-    min-height: 100vh;
-    transition: background 0.5s ease;
+.weather-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 60px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.sunny-bg { 
-  background: linear-gradient(to bottom, #4facfe ,#00f2fe);
- }
-
-.rain-bg { 
-  background: linear-gradient(to bottom,#4A90E2,#0B1F5B);
+.weather-card:hover{
+  transform: translateY(-5px);
 }
-
-.cloud-bg { 
-  background: linear-gradient(to bottom, darkgray, lightgray,white );
-
+.weather-card h2 {
+  margin-bottom: 10px;
 }
 
-.thunder-bg { 
-  background: linear-gradient(to bottom, black,rgb(39, 1, 39) );
-
+.weather-card h1{
+  
+  margin: 15px 0;
 }
-.white
-{
-  background: white;
+
+.weather-card p {
+  margin: 8px 0;
+}
+
+.weather-card img {
+    width: 80px;
+    height: 80px;
+}
+.temperature {
+    font-size: 60px;
+    color: black;
+}
+hr {
+    border: none;
+    height: 1px;
+    background: lightgray;
+    margin: 2px;
+}
+.weather-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
