@@ -5,15 +5,24 @@ function WeatherCard({ city, temperature, condition, humidity, wind, icon }) {
     <div className="weather-card">
       <h2>{city}</h2>
 
-      <img src={icon} alt="" />
+      <img src={icon} alt={condition} />
 
-      <h1>{temperature}°C</h1>
+      <h1 className="temperature">{temperature}°C</h1>
       
-      <p>{condition}</p>
+      <p className="condition">{condition}</p>
 
-      <p>Humidity: {humidity}%</p>
+      <hr />
+      <div className="weather-details">
+        <div className="weather-row">
+            <span>💧 Humidity</span>
+            <span>{humidity}%</span>
+        </div>
 
-      <p>Wind: {wind} km/h</p>
+        <div className="weather-row">
+            <span>🌬 Wind</span>
+            <span>{wind} km/h</span>
+        </div>
+      </div>
     </div>
   );
 }
