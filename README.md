@@ -24,3 +24,6 @@ A Weather App built with React and Vite.
 
 - Project initialized
 - Search bar UI
+
+## Author
+Nayab Maryam
