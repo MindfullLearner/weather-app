@@ -27,3 +27,4 @@ A Weather App built with React and Vite.
 
 ## Author
 Nayab Maryam
+*Stay Connected for updates!*
