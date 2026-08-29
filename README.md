@@ -25,6 +25,10 @@ A Weather App built with React and Vite.
 - Project initialized
 - Search bar UI
 
+## Future Improvements
+- Add 10 days weather
+- Add Favorite cities
+  
 ## Author
 Nayab Maryam
 *Stay Connected for updates!*
